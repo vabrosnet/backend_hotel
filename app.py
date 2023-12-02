@@ -56,13 +56,14 @@ class Catalogo:
         return self.cursor.fetchone()
     
     def agregar_reserva(self, fecha_llegada, fecha_salida, habitacion, apellido, nombre, dni, telefono, email):
-        self.cursor.execute(f"SELECT * FROM reservas WHERE fecha_llegada = {fecha_llegada} AND fecha_salida = {fecha_salida} AND habitacion = {habitacion}")
-        
+        consulta = "SELECT * FROM reservas WHERE fecha_llegada = %s AND fecha_salida = %s AND habitacion = %s"
+        self.cursor.execute(consulta, (fecha_llegada, fecha_salida, habitacion))
+                
         reserva_existe = self.cursor.fetchone()
         if reserva_existe:
             return False
-        
-        sql = "INSERT INTO reservas (fecha_llegada, fecha_salida, habitacion, apellido, nombre, dni, telefono, email) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+
+        sql = "INSERT INTO reservas (fecha_llegada, fecha_salida, habitacion, apellido, nombre, dni, telefono, email) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
         valores = (fecha_llegada, fecha_salida, habitacion, apellido, nombre, dni, telefono, email)
         self.cursor.execute(sql, valores)
         self.conn.commit()
