@@ -10,12 +10,16 @@ fetch(URL + 'reservas')
         let tablaReservas = document.getElementById('tablaReservas');
         for (let reserva of data) {
             let fila = document.createElement('tr');
-            let fechaLlegada = new Date(reserva.fecha_llegada).toLocaleDateString();
-            let fechaSalida = new Date(reserva.fecha_salida).toLocaleDateString();
+            let fechaLlegada = new Date(reserva.fecha_llegada)
+            let fLlegadaFormateada = fechaLlegada.toISOString().split('T')[0].split('-').reverse().join('-');
+            // 
+            let fechaSalida = new Date(reserva.fecha_salida);
+            let fSalidaFormateada = fechaSalida.toISOString().split('T')[0].split('-').reverse().join('-');
+
 
             fila.innerHTML = '<td>' + reserva.codigo + '</td>' +
-            '<td>' + fechaLlegada + '</td>' +
-            '<td>' + fechaSalida + '</td>' +
+            '<td>' + fLlegadaFormateada + '</td>' +
+            '<td>' + fSalidaFormateada + '</td>' +
             '<td>' + reserva.habitacion + '</td>' +
             '<td>' + reserva.apellido + '</td>' +
             '<td>' + reserva.nombre + '</td>' +

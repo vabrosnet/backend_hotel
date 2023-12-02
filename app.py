@@ -123,14 +123,14 @@ def agregar_reserva():
 #Modificar reserva
 @app.route("/reservas/<int:codigo>", methods=["PUT"])
 def modificar_reserva(codigo):
-    nueva_fecha_llegada = request.form.get['fecha_llegada']
-    nueva_fecha_salida = request.form.get['fecha_salida']
-    nueva_habitacion = request.form.get['habitacion']
-    nueva_apellido = request.form.get['apellido']
-    nueva_nombre = request.form.get['nombre']
-    nueva_dni = request.form.get['dni']
-    nueva_telefono = request.form.get['telefono']
-    nueva_email = request.form.get['email']
+    nueva_fecha_llegada = request.form.get('fecha_llegada')
+    nueva_fecha_salida = request.form.get('fecha_salida')
+    nueva_habitacion = request.form.get('habitacion')
+    nueva_apellido = request.form.get('apellido')
+    nueva_nombre = request.form.get('nombre')
+    nueva_dni = request.form.get('dni')
+    nueva_telefono = request.form.get('telefono')
+    nueva_email = request.form.get('email')
 
     if catalogo.modificar_reserva(codigo, nueva_fecha_llegada, nueva_fecha_salida, nueva_habitacion, nueva_apellido, nueva_nombre, nueva_dni, nueva_telefono, nueva_email):
         return jsonify({"mensaje": "Reserva modificada"}), 200
