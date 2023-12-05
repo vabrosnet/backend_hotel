@@ -56,8 +56,8 @@ class Catalogo:
         return self.cursor.fetchone()
     
     def agregar_reserva(self, fecha_llegada, fecha_salida, habitacion, apellido, nombre, dni, telefono, email):
-        consulta = "SELECT * FROM reservas WHERE fecha_llegada = %s AND fecha_salida = %s AND habitacion = %s"
-        self.cursor.execute(consulta, (fecha_llegada, fecha_salida, habitacion))
+        consulta = "SELECT * FROM reservas WHERE fecha_llegada = %s AND fecha_salida = %s AND email = %s"
+        self.cursor.execute(consulta, (fecha_llegada, fecha_salida, email))
                 
         reserva_existe = self.cursor.fetchone()
         if reserva_existe:
@@ -83,8 +83,8 @@ class Catalogo:
 
     #Fin clase
 
-catalogo = Catalogo(host='localhost', user='root', password='123456',
-database='hotel_argentino')
+catalogo = Catalogo(host='sql10.freemysqlhosting.net', user='sql10667807', password='dBmhsDzLRi',
+database='sql10667807')
 ruta_destino = './static/imagenes/'
 
 
